@@ -9,9 +9,11 @@ import kotlinx.android.synthetic.main.item_beer.view.*
 class BeerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(beersResponseItem: BeersResponseItem) {
-        itemView.item_beer_name.text = beersResponseItem.name
-        itemView.item_beer_description.text = beersResponseItem.description
-        Picasso.get().load(beersResponseItem.imageUrl).into(itemView.item_beer_image)
+        beersResponseItem.let {
+            itemView.item_beer_name.text = it.name
+            itemView.item_beer_description.text = it.description
+            Picasso.get().load(it.imageUrl).into(itemView.item_beer_image)
+        }
     }
 
 }

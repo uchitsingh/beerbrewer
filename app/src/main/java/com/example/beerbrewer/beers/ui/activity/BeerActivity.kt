@@ -1,5 +1,6 @@
-package com.example.beerbrewer.beers.ui
+package com.example.beerbrewer.beers.ui.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -7,8 +8,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerbrewer.App
 import com.example.beerbrewer.R
+import com.example.beerbrewer.beers.data.model.Ingredients
 import com.example.beerbrewer.beers.data.repository.BeerRepository
 import com.example.beerbrewer.beers.ui.adapter.BeerAdapter
+import com.example.beerbrewer.beers.ui.listener.BeerClickListener
 import com.example.beerbrewer.beers.viewmodel.BeerViewModel
 import com.example.beerbrewer.beers.viewmodel.BeerViewModelFactory
 import kotlinx.android.synthetic.main.activity_beer.*
@@ -40,10 +43,22 @@ class BeerActivity : AppCompatActivity() {
         })
     }
 
-    private fun setupRecyclerView(){
+    private fun setupRecyclerView() {
         beer_rv.layoutManager = LinearLayoutManager(this)
-        adapter = BeerAdapter()
+        adapter = BeerAdapter(object : BeerClickListener {
+            override fun onClick(name: String?, ingredients: Ingredients?) {
+                val intent = Intent(this@BeerActivity, BeerDetailActivity::class.java)
+                intent.putExtra(BEER_NAME, name)
+                intent.putExtra(BEER_INGREDENTS, ingredients)
+                startActivity(intent)
+            }
+        })
         beer_rv.adapter = adapter
+    }
+
+    companion object {
+        const val BEER_NAME = "beer_name"
+        const val BEER_INGREDENTS = "beer_ingredents"
     }
 
 }

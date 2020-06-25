@@ -5,9 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.beerbrewer.R
 import com.example.beerbrewer.beers.data.model.BeersResponseItem
+import com.example.beerbrewer.beers.ui.listener.BeerClickListener
 import com.example.beerbrewer.beers.ui.viewholder.BeerViewHolder
 
-class BeerAdapter : RecyclerView.Adapter<BeerViewHolder>() {
+class BeerAdapter(private val beerClickListener: BeerClickListener) :
+    RecyclerView.Adapter<BeerViewHolder>() {
+
     private val beersResponse = mutableListOf<BeersResponseItem>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeerViewHolder {
@@ -26,6 +29,12 @@ class BeerAdapter : RecyclerView.Adapter<BeerViewHolder>() {
 
     override fun onBindViewHolder(holder: BeerViewHolder, position: Int) {
         holder.bind(beersResponse[position])
+        holder.itemView.setOnClickListener {
+            beerClickListener.onClick(
+                beersResponse[position].name,
+                beersResponse[position].ingredients
+            )
+        }
     }
 
     fun setAdapter(beerResponseItem: List<BeersResponseItem>) {
@@ -33,4 +42,5 @@ class BeerAdapter : RecyclerView.Adapter<BeerViewHolder>() {
         this.beersResponse.addAll(beerResponseItem)
         notifyDataSetChanged()
     }
+
 }
