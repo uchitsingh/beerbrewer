@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">BeerBrewer</string>
+
+    <!-- items   -->
+    <string name="amount">Amount </string>
+    <string name="unit">Unit: </string>
+    <string name="value">Value: </string>
+    <string name="name">Name: </string>
+
+    <string name="hops_add">Add:  </string>
+    <string name="hops_attribute">Attribute: </string>
+
 </resources>
