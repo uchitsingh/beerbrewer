@@ -2,6 +2,7 @@ package com.example.beerbrewer.beers.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beerbrewer.R
 import com.example.beerbrewer.beers.data.model.Ingredients
@@ -24,7 +25,7 @@ class BeerDetailActivity : AppCompatActivity() {
     private fun setupBeerDetailView(name: String?, ingredients: Ingredients?) {
         beer_detail_name.text = name
 
-        beer_detail_rv.layoutManager = LinearLayoutManager(this)
+        beer_detail_rv.layoutManager = GridLayoutManager(this,2)
         adapter = BeerDetailAdapter()
         adapter.setAdapter(ingredients)
         beer_detail_rv.adapter = adapter

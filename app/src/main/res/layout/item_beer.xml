@@ -25,7 +25,7 @@
                 android:id="@+id/item_beer_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_size_22"
+                android:textSize="@dimen/text_size_48"
                 android:textStyle="bold" />
 
             <TextView
